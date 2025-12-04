@@ -62,7 +62,7 @@ const Chat = () => {
 
   const loadChatHistory = async () => {
     try {
-      const response = await axios.get(`${import.meta.env.VITE_API_URL}/chat/history`); //Api call to fetch chat history
+      const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/chat/history`); //Api call to fetch chat history
       if (response.data.messages) {
         setMessages(response.data.messages);
       }
@@ -87,7 +87,7 @@ const Chat = () => {
     setLoading(true);
 
     try {
-      const response = await axios.post(`${import.meta.env.VITE_API_URL}/chat/message`, {
+      const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/chat/message`, {
         message: inputMessage,
         language: language
       });
@@ -121,7 +121,7 @@ const Chat = () => {
   const handleClearChat = async () => {
     if (window.confirm('Are you sure you want to clear the chat history?')) {
       try {
-        await axios.delete(`${import.meta.env.VITE_API_URL}/chat/history`);
+        await axios.delete(`${import.meta.env.VITE_API_URL}/api/chat/history`);
         setMessages([]);
       } catch (error) {
         console.error('Error clearing chat:', error);
